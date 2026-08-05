@@ -7,12 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #00529B;
-    --primary-dark: #003366;
-    --accent: #FF7A00;
-    --accent-hover: #E06B00;
-    --bg-gradient: linear-gradient(135deg, #002B49 0%, #00529B 50%, #0078D4 100%);
-    --card-bg: rgba(255, 255, 255, 0.95);
+    --bri-blue: #00529B;
+    --bri-blue-dark: #002B49;
+    --bwi-gold: #FF9800;
+    --bwi-gold-dark: #E68900;
+    --card-bg: rgba(255, 255, 255, 0.96);
 }
 
 * {
@@ -23,24 +22,65 @@
 }
 
 body {
-    background: var(--bg-gradient);
+    background-color: var(--bri-blue-dark);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 152, 0, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 0% 0%, rgba(0, 82, 155, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(0, 82, 155, 0.8) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(255, 255, 255, 0.05) 25%, var(--bri-blue-dark) 25%);
+    background-position: 0 0, 0 0, 0 0, 20px 0, 20px 0, 0 0, 0 0;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+    background-attachment: fixed;
     color: #1E293B;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 82, 155, 0.6);
+    filter: blur(100px);
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 152, 0, 0.25);
+    filter: blur(90px);
+    border-radius: 50%;
+    bottom: 10%;
+    right: 10%;
+    z-index: 0;
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     width: 100%;
     max-width: 900px;
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-radius: 24px;
     padding: 32px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .header {
@@ -51,7 +91,7 @@ body {
 .badge {
     display: inline-block;
     background: #E0F2FE;
-    color: var(--primary);
+    color: var(--bri-blue);
     font-size: 13px;
     font-weight: 700;
     padding: 6px 16px;
@@ -62,15 +102,19 @@ body {
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
-    color: var(--primary-dark);
+    color: var(--bri-blue-dark);
+}
+
+h1 span {
+    color: var(--bwi-gold);
 }
 
 .area {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 24px;
 }
 
 @media (max-width: 640px) {
@@ -91,16 +135,16 @@ h1 {
     color: #475569;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 textarea {
     width: 100%;
     height: 180px;
-    padding: 14px;
+    padding: 16px;
     font-size: 15px;
     line-height: 1.5;
-    color: #334155;
+    color: #1E293B;
     border: 2px solid #E2E8F0;
     border-radius: 14px;
     outline: none;
@@ -110,7 +154,7 @@ textarea {
 }
 
 textarea:focus {
-    border-color: var(--primary);
+    border-color: var(--bri-blue);
     background: #FFFFFF;
     box-shadow: 0 0 0 4px rgba(0, 82, 155, 0.15);
 }
@@ -119,24 +163,26 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin: 28px auto 0;
-    padding: 16px 48px;
+    gap: 12px;
+    margin: 32px auto 0;
+    padding: 18px 56px;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 800;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    background: var(--accent);
+    background: var(--bwi-gold);
     color: white;
-    box-shadow: 0 10px 25px -5px rgba(255, 122, 0, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(255, 152, 0, 0.5);
     transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-spin:hover {
-    background: var(--accent-hover);
+    background: var(--bwi-gold-dark);
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px -5px rgba(255, 122, 0, 0.5);
+    box-shadow: 0 15px 30px -5px rgba(255, 152, 0, 0.6);
 }
 
 .btn-spin:active {
@@ -144,7 +190,7 @@ textarea:focus {
 }
 
 .table-wrapper {
-    margin-top: 28px;
+    margin-top: 32px;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid #E2E8F0;
@@ -157,17 +203,17 @@ table {
 }
 
 th {
-    background: var(--primary);
+    background: var(--bri-blue);
     color: white;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 14px 16px;
+    padding: 16px;
 }
 
 td {
-    padding: 14px 16px;
+    padding: 16px;
     border-bottom: 1px solid #F1F5F9;
     text-align: center;
     font-size: 15px;
@@ -181,7 +227,6 @@ tr:nth-child(even) td {
     background: #F8FAFC;
 }
 
-/* Animasi Spin dari Koding Awal */
 .spin {
     animation: spin .08s infinite;
 }
@@ -195,17 +240,18 @@ tr:nth-child(even) td {
     text-align: center;
     color: #64748B;
     font-size: 13px;
-    margin-top: 20px;
+    margin-top: 24px;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 16px;
 }
 
-/* Modal Countdown Styling */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(0, 43, 73, 0.9);
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -231,16 +277,16 @@ tr:nth-child(even) td {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #93C5FD;
-    margin-bottom: 10px;
+    color: var(--bwi-gold);
+    margin-bottom: 15px;
 }
 
 .countdown-number {
-    font-size: 120px;
+    font-size: 130px;
     font-weight: 800;
     line-height: 1;
     color: #FFFFFF;
-    text-shadow: 0 0 30px rgba(255, 122, 0, 0.6);
+    text-shadow: 0 0 35px rgba(255, 152, 0, 0.8);
     animation: pop 0.4s ease infinite alternate;
 }
 
@@ -254,8 +300,8 @@ tr:nth-child(even) td {
 
 <div class="container">
     <div class="header">
-        <span class="badge">BRI BANYUWANGI</span>
-        <h1>SPIN TEAM & DRESSCODE</h1>
+        <span class="badge">BRI CABANG BANYUWANGI</span>
+        <h1>SPIN TEAM & <span>DRESSCODE</span></h1>
     </div>
 
     <div class="area">
@@ -288,19 +334,18 @@ DISKO</textarea>
             <thead>
                 <tr>
                     <th>NAMA TEAM</th>
-                    <th>DRESSCODE</th>
+                    <th>DRESSCODE ACARA</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2" style="color: #94A3B8; font-style: italic;">Klik tombol SPIN untuk mengacak.</td>
+                    <td colspan="2" style="color: #94A3B8; font-style: italic; padding: 24px;">Klik tombol SPIN untuk mengacak dresscode.</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<!-- Pop-up Overlay Countdown -->
 <div class="modal-overlay" id="countdownModal">
     <div class="modal-content">
         <div class="modal-title">SPIN DIMULAI DALAM</div>
@@ -309,7 +354,104 @@ DISKO</textarea>
 </div>
 
 <script>
-// fungsi shuffle bawaan kodingan awal
+// --- SISTEM SUARA ELEKTRONIK (WEB AUDIO API) ---
+let audioCtx = null;
+
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+// 1. Suara Detik Jam (Tick-Tock)
+function playTickSound() {
+    initAudio();
+    let osc = audioCtx.createOscillator();
+    let gain = audioCtx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(800, audioCtx.currentTime); 
+    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.05);
+
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.05);
+}
+
+// 2. Suara Roda Pengacakan (Click-Shuffle Sound)
+function playSpinClickSound() {
+    initAudio();
+    let osc = audioCtx.createOscillator();
+    let gain = audioCtx.createGain();
+
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(200 + Math.random() * 300, audioCtx.currentTime);
+
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
+}
+
+// 3. Suara Tepuk Tangan & Selebrasi Selesai (Victory Fanfare + Noise Clap)
+function playVictorySound() {
+    initAudio();
+    
+    // Nadanya (Fanfare jingle)
+    const notes = [261.63, 329.63, 392.00, 523.25];
+    notes.forEach((freq, idx) => {
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+
+        let startTime = audioCtx.currentTime + (idx * 0.1);
+        gain.gain.setValueAtTime(0.2, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(startTime);
+        osc.stop(startTime + 0.4);
+    });
+
+    // Simulasi Tepuk Tangan (Clapping Noise)
+    for (let i = 0; i < 20; i++) {
+        let bufferSize = audioCtx.sampleRate * 0.05;
+        let buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        let data = buffer.getChannelData(0);
+        for (let j = 0; j < bufferSize; j++) {
+            data[j] = Math.random() * 2 - 1;
+        }
+
+        let noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        let gain = audioCtx.createGain();
+        let clapTime = audioCtx.currentTime + 0.3 + (Math.random() * 1.2);
+
+        gain.gain.setValueAtTime(0.15, clapTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, clapTime + 0.05);
+
+        noise.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start(clapTime);
+    }
+}
+
+// --- FUNGSI UTAMA ---
 function shuffle(array){
     for(let i=array.length-1;i>0;i--){
         const j=Math.floor(Math.random()*(i+1));
@@ -318,10 +460,14 @@ function shuffle(array){
     return array;
 }
 
-// Fungsi Countdown sebelum Spin Utama
 function startWithCountdown() {
     let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
     let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
+
+    if (nama.length === 0 || jurusan.length === 0) {
+        alert("Data tim atau dresscode tidak boleh kosong!");
+        return;
+    }
 
     if (nama.length !== jurusan.length) {
         alert("Jumlah nama dan jurusan harus sama!");
@@ -334,22 +480,25 @@ function startWithCountdown() {
     modal.classList.add("active");
     let count = 5;
     countdownText.innerText = count;
+    
+    // Bunyikan jam pertama kali
+    playTickSound();
 
     let timer = setInterval(() => {
         count--;
         if (count > 0) {
             countdownText.innerText = count;
+            playTickSound(); // Bunyi detik jam
         } else {
             clearInterval(timer);
             modal.classList.remove("active");
             
-            // Setelah hitungan 1 selesai -> Jalankan pengacakan bawaan awal
+            // Lanjut ke pengacakan
             spin();
         }
     }, 1000);
 }
 
-// Fungsi Spin Pengacakan (Sesuai Kodingan Awal)
 function spin(){
     let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
     let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
@@ -357,7 +506,7 @@ function spin(){
     let tbody = document.querySelector("#hasil tbody");
     tbody.innerHTML = "";
 
-    // Animasi pengacakan acak (interval 80ms)
+    // Animasi pengacakan acak + Suara Rolling/Spin
     let interval = setInterval(() => {
         tbody.innerHTML = "";
         let acak = shuffle([...jurusan]);
@@ -369,9 +518,10 @@ function spin(){
             </tr>
             `;
         });
+        playSpinClickSound(); // Bunyi klik pengacakan
     }, 80);
 
-    // Setelah 3 detik -> Tampilkan Hasil Akhir
+    // Setelah 3 detik -> Tampilkan Hasil Akhir & Suara Tepuk Tangan
     setTimeout(() => {
         clearInterval(interval);
         tbody.innerHTML = "";
@@ -386,6 +536,9 @@ function spin(){
             </tr>
             `;
         });
+        
+        // Bunyi Selebrasi & Tepuk Tangan
+        playVictorySound();
     }, 3000);
 }
 </script>
