@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spin Team & Dresscode - BRI Banyuwangi</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #00529B;
+    --primary-dark: #003366;
+    --accent: #FF7A00;
+    --accent-hover: #E06B00;
+    --bg-gradient: linear-gradient(135deg, #002B49 0%, #00529B 50%, #0078D4 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: #1E293B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.badge {
+    display: inline-block;
+    background: #E0F2FE;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 640px) {
+    .area {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+textarea {
+    width: 100%;
+    height: 180px;
+    padding: 14px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #334155;
+    border: 2px solid #E2E8F0;
+    border-radius: 14px;
+    outline: none;
+    resize: none;
+    transition: all 0.2s ease;
+    background: #F8FAFC;
+}
+
+textarea:focus {
+    border-color: var(--primary);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(0, 82, 155, 0.15);
+}
+
+.btn-spin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 28px auto 0;
+    padding: 16px 48px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 10px 25px -5px rgba(255, 122, 0, 0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-spin:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(255, 122, 0, 0.5);
+}
+
+.btn-spin:active {
+    transform: translateY(0);
+}
+
+.table-wrapper {
+    margin-top: 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #F1F5F9;
+    text-align: center;
+    font-size: 15px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) td {
+    background: #F8FAFC;
+}
+
+/* Animasi Spin dari Koding Awal */
+.spin {
+    animation: spin .08s infinite;
+}
+
+@keyframes spin {
+    from { transform: translateX(-5px); }
+    to { transform: translateX(5px); }
+}
+
+.footer {
+    text-align: center;
+    color: #64748B;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* Modal Countdown Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    text-align: center;
+    color: white;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #93C5FD;
+    margin-bottom: 10px;
+}
+
+.countdown-number {
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px rgba(255, 122, 0, 0.6);
+    animation: pop 0.4s ease infinite alternate;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.95); }
+    100% { transform: scale(1.05); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span class="badge">BRI BANYUWANGI</span>
+        <h1>SPIN TEAM & DRESSCODE</h1>
+    </div>
+
+    <div class="area">
+        <div class="input-group">
+            <h3>👥 NAMA TEAM</h3>
+            <textarea id="nama">MBM 1 Bp.Bambs 
+MBM 2 Bp.Erwan 
+MBM 3 Bp.Salim 
+MBM 4 Ibu.Anis 
+RM Cabang 
+OPS Cabang 
+KCP</textarea>
+        </div>
+        <div class="input-group">
+            <h3>🎨 DRESSCODE</h3>
+            <textarea id="jurusan">ROCK
+REGGAE
+SKA
+KPOP
+DANGDUT
+HIPHOP
+DISKO</textarea>
+        </div>
+    </div>
+
+    <button class="btn-spin" onclick="startWithCountdown()">🎯 SPIN SEKARANG</button>
+
+    <div class="table-wrapper">
+        <table id="hasil">
+            <thead>
+                <tr>
+                    <th>NAMA TEAM</th>
+                    <th>DRESSCODE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="color: #94A3B8; font-style: italic;">Klik tombol SPIN untuk mengacak.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Sekali klik langsung semua mendapatkan jurusan acak.
+    </div>
+</div>
+
+<!-- Pop-up Overlay Countdown -->
+<div class="modal-overlay" id="countdownModal">
+    <div class="modal-content">
+        <div class="modal-title">SPIN DIMULAI DALAM</div>
+        <div class="countdown-number" id="countdownText">5</div>
+    </div>
+</div>
+
+<script>
+// fungsi shuffle bawaan kodingan awal
+function shuffle(array){
+    for(let i=array.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [array[i],array[j]]=[array[j],array[i]];
+    }
+    return array;
+}
+
+// Fungsi Countdown sebelum Spin Utama
+function startWithCountdown() {
+    let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
+    let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
+
+    if (nama.length !== jurusan.length) {
+        alert("Jumlah nama dan jurusan harus sama!");
+        return;
+    }
+
+    const modal = document.getElementById("countdownModal");
+    const countdownText = document.getElementById("countdownText");
+    
+    modal.classList.add("active");
+    let count = 5;
+    countdownText.innerText = count;
+
+    let timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+            countdownText.innerText = count;
+        } else {
+            clearInterval(timer);
+            modal.classList.remove("active");
+            
+            // Setelah hitungan 1 selesai -> Jalankan pengacakan bawaan awal
+            spin();
+        }
+    }, 1000);
+}
+
+// Fungsi Spin Pengacakan (Sesuai Kodingan Awal)
+function spin(){
+    let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
+    let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
+
+    let tbody = document.querySelector("#hasil tbody");
+    tbody.innerHTML = "";
+
+    // Animasi pengacakan acak (interval 80ms)
+    let interval = setInterval(() => {
+        tbody.innerHTML = "";
+        let acak = shuffle([...jurusan]);
+        nama.forEach((n, i) => {
+            tbody.innerHTML += `
+            <tr class="spin">
+                <td>${n}</td>
+                <td>${acak[i]}</td>
+            </tr>
+            `;
+        });
+    }, 80);
+
+    // Setelah 3 detik -> Tampilkan Hasil Akhir
+    setTimeout(() => {
+        clearInterval(interval);
+        tbody.innerHTML = "";
+        let final = shuffle([...jurusan]);
+        nama.forEach((n, i) => {
+            tbody.innerHTML += `
+            <tr>
+                <td><b>${n}</b></td>
+                <td style="color:#0a8f3c;font-weight:bold;font-size:18px">
+                    ${final[i]}
+                </td>
+            </tr>
+            `;
+        });
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
