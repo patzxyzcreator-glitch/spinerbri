@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spin Team & Dresscode - BRI Banyuwangi</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Library Canvas Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
 <style>
 :root {
     --bri-blue: #00529B;
@@ -16,7 +18,7 @@
 
 * {
     box-sizing: border-box;
-    margin: 2;
+    margin: 0;
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
@@ -39,7 +41,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 30px 20px;
     position: relative;
     overflow-x: hidden;
 }
@@ -47,10 +49,10 @@ body {
 body::before {
     content: '';
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     background: rgba(0, 82, 155, 0.6);
-    filter: blur(100px);
+    filter: blur(120px);
     border-radius: 50%;
     top: 10%;
     left: 10%;
@@ -60,10 +62,10 @@ body::before {
 body::after {
     content: '';
     position: absolute;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     background: rgba(255, 152, 0, 0.25);
-    filter: blur(90px);
+    filter: blur(110px);
     border-radius: 50%;
     bottom: 10%;
     right: 10%;
@@ -74,35 +76,35 @@ body::after {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     background: var(--card-bg);
     backdrop-filter: blur(12px);
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: 32px;
+    padding: 48px 56px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
 }
 
 .badge {
     display: inline-block;
     background: #E0F2FE;
     color: var(--bri-blue);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 6px 16px;
-    border-radius: 20px;
-    letter-spacing: 1px;
+    padding: 10px 24px;
+    border-radius: 24px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 46px;
     font-weight: 800;
     color: var(--bri-blue-dark);
 }
@@ -114,39 +116,43 @@ h1 span {
 .area {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 36px;
 }
 
 @media (max-width: 640px) {
     .area {
         grid-template-columns: 1fr;
     }
+    .container {
+        padding: 24px;
+    }
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .input-group h3 {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
     color: #475569;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 textarea {
     width: 100%;
-    height: 180px;
-    padding: 16px;
-    font-size: 15px;
+    height: 260px;
+    padding: 20px;
+    font-size: 21.5px;
+    font-weight: 700;
     line-height: 1.5;
     color: #1E293B;
     border: 2px solid #E2E8F0;
-    border-radius: 14px;
+    border-radius: 18px;
     outline: none;
     resize: none;
     transition: all 0.2s ease;
@@ -156,33 +162,33 @@ textarea {
 textarea:focus {
     border-color: var(--bri-blue);
     background: #FFFFFF;
-    box-shadow: 0 0 0 4px rgba(0, 82, 155, 0.15);
+    box-shadow: 0 0 0 5px rgba(0, 82, 155, 0.15);
 }
 
 .btn-spin {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin: 32px auto 0;
-    padding: 18px 56px;
-    font-size: 18px;
+    gap: 16px;
+    margin: 44px auto 0;
+    padding: 24px 72px;
+    font-size: 24px;
     font-weight: 800;
     border: none;
-    border-radius: 50px;
+    border-radius: 60px;
     cursor: pointer;
     background: var(--bwi-gold);
     color: white;
-    box-shadow: 0 10px 25px -5px rgba(255, 152, 0, 0.5);
+    box-shadow: 0 12px 30px -5px rgba(113, 197, 232, 0.6);
     transition: all 0.2s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .btn-spin:hover {
     background: var(--bwi-gold-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px -5px rgba(255, 152, 0, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px -5px rgba(0, 82, 155, 0.4);
 }
 
 .btn-spin:active {
@@ -190,8 +196,8 @@ textarea:focus {
 }
 
 .table-wrapper {
-    margin-top: 32px;
-    border-radius: 16px;
+    margin-top: 44px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid #E2E8F0;
 }
@@ -205,18 +211,18 @@ table {
 th {
     background: var(--bri-blue);
     color: white;
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 16px;
+    letter-spacing: 0.8px;
+    padding: 22px;
 }
 
 td {
-    padding: 16px;
+    padding: 22px;
     border-bottom: 1px solid #F1F5F9;
     text-align: center;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 tr:last-child td {
@@ -227,22 +233,13 @@ tr:nth-child(even) td {
     background: #F8FAFC;
 }
 
-.spin {
+.spin-dresscode {
     animation: spin .08s infinite;
 }
 
 @keyframes spin {
-    from { transform: translateX(-5px); }
-    to { transform: translateX(5px); }
-}
-
-.footer {
-    text-align: center;
-    color: #64748B;
-    font-size: 13px;
-    margin-top: 24px;
-    border-top: 1px solid #E2E8F0;
-    padding-top: 16px;
+    from { transform: translateY(-3px); opacity: 0.8; }
+    to { transform: translateY(3px); opacity: 1; }
 }
 
 .modal-overlay {
@@ -273,20 +270,20 @@ tr:nth-child(even) td {
 }
 
 .modal-title {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--bwi-gold);
-    margin-bottom: 15px;
+    margin-bottom: 24px;
 }
 
 .countdown-number {
-    font-size: 130px;
+    font-size: 180px;
     font-weight: 800;
     line-height: 1;
     color: #FFFFFF;
-    text-shadow: 0 0 35px rgba(255, 152, 0, 0.8);
+    text-shadow: 0 0 50px rgba(113, 197, 232, 0.9);
     animation: pop 0.4s ease infinite alternate;
 }
 
@@ -339,7 +336,7 @@ DISKO</textarea>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2" style="color: #94A3B8; font-style: italic; padding: 24px;">Klik tombol SPIN untuk mengacak dresscode.</td>
+                    <td colspan="2" style="color: #94A3B8; font-style: italic; padding: 32px;">Klik tombol SPIN untuk mengacak dresscode.</td>
                 </tr>
             </tbody>
         </table>
@@ -361,9 +358,12 @@ function initAudio() {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
 }
 
-// 1. Suara Detik Jam (Tick-Tock)
+// 1. Suara Detik Jam (Tick-Tock Hitung Mundur)
 function playTickSound() {
     initAudio();
     let osc = audioCtx.createOscillator();
@@ -402,12 +402,12 @@ function playSpinClickSound() {
     osc.stop(audioCtx.currentTime + 0.04);
 }
 
-// 3. Suara Tepuk Tangan & Selebrasi Selesai (Victory Fanfare + Noise Clap)
+// 3. Suara Selebrasi Fanfare + TEPUK TANGAN MERIAH (APPLAUSE)
 function playVictorySound() {
     initAudio();
-    
-    // Nadanya (Fanfare jingle)
-    const notes = [261.63, 329.63, 392.00, 523.25];
+
+    // Fanfare Jingle (Tanda Menang)
+    const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
     notes.forEach((freq, idx) => {
         let osc = audioCtx.createOscillator();
         let gain = audioCtx.createGain();
@@ -415,40 +415,117 @@ function playVictorySound() {
         osc.type = 'triangle';
         osc.frequency.value = freq;
 
-        let startTime = audioCtx.currentTime + (idx * 0.1);
-        gain.gain.setValueAtTime(0.2, startTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
+        let startTime = audioCtx.currentTime + (idx * 0.08);
+        gain.gain.setValueAtTime(0.3, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.5);
 
         osc.connect(gain);
         gain.connect(audioCtx.destination);
 
         osc.start(startTime);
-        osc.stop(startTime + 0.4);
+        osc.stop(startTime + 0.5);
     });
 
-    // Simulasi Tepuk Tangan (Clapping Noise)
-    for (let i = 0; i < 20; i++) {
-        let bufferSize = audioCtx.sampleRate * 0.05;
-        let buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        let data = buffer.getChannelData(0);
-        for (let j = 0; j < bufferSize; j++) {
-            data[j] = Math.random() * 2 - 1;
+    // Generating Sound Tepuk Tangan Meriah (Applause Noise Buffer)
+    let duration = 3.5; // Tepuk tangan berdurasi 3.5 detik
+    let bufferSize = audioCtx.sampleRate * duration;
+    let buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    let output = buffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 1.8));
+    }
+
+    let whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = buffer;
+
+    let filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
+    filter.Q.setValueAtTime(0.5, audioCtx.currentTime);
+
+    let gain = audioCtx.createGain();
+    gain.gain.setValueAtTime(0.8, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+
+    whiteNoise.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    whiteNoise.start(audioCtx.currentTime + 0.2);
+}
+
+// --- EFEK CONFETTI & PETASAN SUPER MERIAH ---
+function triggerFireworksAndConfetti() {
+    let duration = 3.5 * 1000; 
+    let end = Date.now() + duration;
+
+    confetti({
+        particleCount: 150,
+        spread: 100,
+        startVelocity: 60,
+        scalar: 1.2,
+        origin: { x: 0, y: 0.8 },
+        zIndex: 2000
+    });
+    confetti({
+        particleCount: 150,
+        spread: 100,
+        startVelocity: 60,
+        scalar: 1.2,
+        origin: { x: 1, y: 0.8 },
+        zIndex: 2000
+    });
+
+    let interval = setInterval(function() {
+        let timeLeft = end - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
         }
 
-        let noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
+        let particleCount = 60 * (timeLeft / duration);
 
-        let gain = audioCtx.createGain();
-        let clapTime = audioCtx.currentTime + 0.3 + (Math.random() * 1.2);
+        confetti({
+            particleCount: particleCount,
+            startVelocity: 45,
+            spread: 360,
+            ticks: 80,
+            origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 },
+            colors: ['#00529B', '#71C5E8', '#FF9800', '#FFFFFF', '#FFD700'],
+            scalar: 1.1,
+            zIndex: 2000
+        });
 
-        gain.gain.setValueAtTime(0.15, clapTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, clapTime + 0.05);
+        confetti({
+            particleCount: particleCount,
+            startVelocity: 45,
+            spread: 360,
+            ticks: 80,
+            origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 },
+            colors: ['#00529B', '#71C5E8', '#FF9800', '#FFFFFF', '#FFD700'],
+            scalar: 1.1,
+            zIndex: 2000
+        });
+    }, 200);
 
-        noise.connect(gain);
-        gain.connect(audioCtx.destination);
+    setTimeout(() => {
+        confetti({
+            particleCount: 100,
+            angle: 90,
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.3,
+            origin: { x: 0.5, y: -0.1 },
+            colors: ['#FFD700', '#71C5E8', '#00529B'],
+            zIndex: 2000
+        });
+    }, 400);
+}
 
-        noise.start(clapTime);
-    }
+function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
 }
 
 // --- FUNGSI UTAMA ---
@@ -461,6 +538,7 @@ function shuffle(array){
 }
 
 function startWithCountdown() {
+    initAudio(); 
     let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
     let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
 
@@ -481,19 +559,17 @@ function startWithCountdown() {
     let count = 5;
     countdownText.innerText = count;
     
-    // Bunyikan jam pertama kali
     playTickSound();
 
     let timer = setInterval(() => {
         count--;
         if (count > 0) {
             countdownText.innerText = count;
-            playTickSound(); // Bunyi detik jam
+            playTickSound();
         } else {
             clearInterval(timer);
             modal.classList.remove("active");
             
-            // Lanjut ke pengacakan
             spin();
         }
     }, 1000);
@@ -502,44 +578,56 @@ function startWithCountdown() {
 function spin(){
     let nama = document.getElementById("nama").value.trim().split("\n").filter(x => x.trim() != "");
     let jurusan = document.getElementById("jurusan").value.trim().split("\n").filter(x => x.trim() != "");
-
     let tbody = document.querySelector("#hasil tbody");
-    tbody.innerHTML = "";
 
-    // Animasi pengacakan acak + Suara Rolling/Spin
-    let interval = setInterval(() => {
-        tbody.innerHTML = "";
-        let acak = shuffle([...jurusan]);
-        nama.forEach((n, i) => {
-            tbody.innerHTML += `
-            <tr class="spin">
-                <td>${n}</td>
-                <td>${acak[i]}</td>
-            </tr>
-            `;
-        });
-        playSpinClickSound(); // Bunyi klik pengacakan
-    }, 80);
+    let startTime = Date.now();
+    let totalDuration = 8000; // Durasi diubah menjadi 8 Detik (8000 ms)
 
-    // Setelah 3 detik -> Tampilkan Hasil Akhir & Suara Tepuk Tangan
-    setTimeout(() => {
-        clearInterval(interval);
-        tbody.innerHTML = "";
-        let final = shuffle([...jurusan]);
-        nama.forEach((n, i) => {
-            tbody.innerHTML += `
-            <tr>
-                <td><b>${n}</b></td>
-                <td style="color:#00529B;font-weight:bold;font-size:18px">
-                    ${final[i]}
-                </td>
-            </tr>
-            `;
-        });
-        
-        // Bunyi Selebrasi & Tepuk Tangan
-        playVictorySound();
-    }, 3000);
+    function loop() {
+        let elapsed = Date.now() - startTime;
+        let progress = elapsed / totalDuration;
+
+        if (progress < 1) {
+            tbody.innerHTML = "";
+            let acak = shuffle([...jurusan]);
+            
+            // Nama Team TETAP DIAM, Hanya Dresscode yang diacak
+            nama.forEach((n, i) => {
+                tbody.innerHTML += `
+                <tr>
+                    <td><b>${n}</b></td>
+                    <td class="spin-dresscode" style="color: #64748B;">${acak[i]}</td>
+                </tr>
+                `;
+            });
+            
+            playSpinClickSound();
+
+            // Formula perlambatan bertahap dari sangat cepat ke makin lambat selama 8 detik
+            let currentDelay = 35 + Math.pow(progress, 3) * 750; 
+            setTimeout(loop, currentDelay);
+        } else {
+            // Hasil Akhir Terkunci Pas 8 Detik
+            tbody.innerHTML = "";
+            let final = shuffle([...jurusan]);
+            nama.forEach((n, i) => {
+                tbody.innerHTML += `
+                <tr>
+                    <td><b>${n}</b></td>
+                    <td style="color:#00529B;font-weight:bold;font-size:23px">
+                        ${final[i]}
+                    </td>
+                </tr>
+                `;
+            });
+            
+            // Panggil Suara Selebrasi + Tepuk Tangan Meriah + Fireworks/Confetti
+            playVictorySound();
+            triggerFireworksAndConfetti();
+        }
+    }
+
+    loop();
 }
 </script>
 
